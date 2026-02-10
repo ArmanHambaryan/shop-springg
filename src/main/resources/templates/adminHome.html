@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" , xmlns:th="http://www.thymeleaf.org" 4r>
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+</head>
+<body>
+
+<h1>Admin Dashboard</h1>
+<a href="/">Home page</a>
+<hr>
+
+<section>
+    <h2>Users</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Email</th>
+            <th>Role</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.surname}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.role}"></td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+
+<section>
+    <h2>Categories</h2>
+
+    <form th:action="@{/category/add}" method="post">
+        <h3>Add Category</h3>
+        <input type="text" name="name" placeholder="Name" required>
+        <button type="submit">Add</button>
+    </form>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cat : ${categories}">
+            <td th:text="${cat.id}"></td>
+            <td th:text="${cat.name}"></td>
+            <td>
+                <a class="delete-btn" th:href="@{'/category/delete/' + ${cat.id}}"
+                   onclick="return confirm('Delete?:')">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+
+<section>
+    <h2>Products</h2>
+
+    <form th:action="@{/product/add}" method="post" enctype="multipart/form-data">
+        <h3>Add Product</h3>
+        <input type="text" name="title" placeholder="Title" required>
+        <textarea name="description" placeholder="description" required style="width: 100%; height: 60px;"></textarea>
+        <input type="number" name="price" placeholder="Price" required>
+
+        <label>Category:</label>
+        <select name="category.id">
+            <option th:each="cat : ${categories}"
+                    th:value="${cat.id}"
+                    th:text="${cat.name}"></option>
+        </select>
+
+        <label>Picture:</label>
+        <input type="file" name="pic" required>
+
+        <button type="submit">Add Product</button>
+    </form>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Pic</th>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Category</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="prod : ${products}">
+            <td>
+                <img th:if="${prod.pictureName != null}"
+                     th:src="@{/image/get(picName=${prod.pictureName})}" width="60">
+            </td>
+            <td th:text="${prod.title}"></td>
+            <td th:text="${prod.price}"></td>
+            <td th:text="${prod.category != null ? prod.category.name : '—'}"></td>
+            <td>
+                <a class="delete-btn" th:href="@{'/product/delete/' + ${prod.id}}"
+                   onclick="return confirm('Are you sure?:')">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+
+</body>
+</html>
