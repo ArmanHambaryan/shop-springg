@@ -5,12 +5,8 @@
     <title>Home Page</title>
 </head>
 <body>
-<div th:if="${user != null}">
-    Welcome, <span th:text="${user.name}"></span> | <a href="/logout">Logout</a>
-</div>
-<div th:unless="${user != null}">
-    <a href="/loginPage">Login</a> | <a href="/registerPage">Register</a>
-</div>
+
+<th:block th:insert="fragments/HeaderFragment::header"></th:block>
 
 <div th:each="cat : ${categories}">
     <a th:href="@{'/products/category/' + ${cat.id}}" th:text="${cat.name}">Category Name</a>
