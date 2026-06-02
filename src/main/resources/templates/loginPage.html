@@ -1,16 +1,63 @@
 <!DOCTYPE html>
-<html lang="en", xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Login - ShopSpring</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css">
 </head>
 <body>
+<main class="page">
+    <th:block th:replace="~{fragments/HeaderFragment::header}"></th:block>
 
-<form action="/login" method="post">
-  Email:  <input type="email" name="email" placeholder="Email" required><br>
-  Password:  <input type="password" name="password" placeholder="Password" required><br>
-    <button type="submit">Login</button>
-</form>
+    <div class="auth-wrapper">
+        <section class="panel auth-card glass" style="padding: 3rem;">
+            <div style="text-align: center; margin-bottom: 2.5rem;">
+                <div style="display: inline-flex; align-items: center; justify-content: center; width: 64px; height: 64px; background: var(--primary-soft); color: var(--primary); border-radius: var(--radius-lg); margin-bottom: 1.5rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </div>
+                <h1 class="section-title" style="margin-bottom: 0.5rem;">Welcome Back</h1>
+                <p style="color: var(--text-muted); font-size: 0.9375rem;">Please enter your details to sign in</p>
+            </div>
 
+            <div th:if="${param.error}" class="btn-danger btn-sm" style="margin-bottom: 1.5rem; text-align: center; border-radius: var(--radius-md); padding: 0.75rem; cursor: default;">
+                Invalid credentials or account not enabled.
+            </div>
+            
+            <div th:if="${msg}" style="margin-bottom: 1.5rem; text-align: center; background: var(--secondary); color: white; border-radius: var(--radius-md); padding: 0.75rem; font-size: 0.875rem; font-weight: 600;" th:text="${msg}">
+            </div>
+
+            <form action="/login" method="post" class="stack">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="username" placeholder="name@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••" required>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; font-weight: 600; cursor: pointer;">
+                        <input type="checkbox" style="width: auto;"> Remember me
+                    </label>
+                    <a href="#" style="font-size: 0.8125rem; color: var(--primary); font-weight: 700;">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem;">
+                    Sign In
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-in"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" x2="3" y1="12" y2="12"/></svg>
+                </button>
+            </form>
+
+            <div style="text-align: center; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">
+                <p style="font-size: 0.9375rem; color: var(--text-muted);">
+                    New to ShopSpring? <a href="/registerPage" style="color: var(--primary); font-weight: 800;">Create an account</a>
+                </p>
+            </div>
+        </section>
+    </div>
+</main>
 </body>
 </html>

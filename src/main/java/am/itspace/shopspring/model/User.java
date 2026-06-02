@@ -30,4 +30,7 @@ public class User {
     @Enumerated(value = EnumType.STRING)
     private UserRole role;
 
+    private boolean enabled;
+    private String token;
+
 }

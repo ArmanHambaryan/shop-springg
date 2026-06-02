@@ -29,6 +29,8 @@ public class WebSecurityConfig {
                                         "/css/**",
                                         "/js/**",
                                         "/registerPage",
+                                        "/user/verify",
+                                        "/user/register",
                                         "/images/**").permitAll()
                                 .anyRequest().authenticated()
                 )
@@ -36,7 +38,7 @@ public class WebSecurityConfig {
                         form
                                 .loginPage("/loginPage")
                                 .loginProcessingUrl("/login")
-                                .usernameParameter("email")
+                                .usernameParameter("username")
                                 .defaultSuccessUrl("/successLogin", true)
                                 .permitAll()
                 )

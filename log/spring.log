@@ -1,0 +1,76 @@
+2026-06-01T13:44:38.874+04:00  INFO 29883 --- [shop-spring] [main] a.i.shopspring.ShopSpringApplication     : Starting ShopSpringApplication using Java 17.0.12 with PID 29883 (/Users/armanhambaryan/IdeaProjects/JavaCore/shop-spring/target/classes started by armanhambaryan in /Users/armanhambaryan/IdeaProjects/JavaCore/shop-spring)
+2026-06-01T13:44:38.877+04:00  INFO 29883 --- [shop-spring] [main] a.i.shopspring.ShopSpringApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-06-01T13:44:39.216+04:00  INFO 29883 --- [shop-spring] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-01T13:44:39.248+04:00  INFO 29883 --- [shop-spring] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 25 ms. Found 3 JPA repository interfaces.
+2026-06-01T13:44:39.551+04:00  INFO 29883 --- [shop-spring] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8088 (http)
+2026-06-01T13:44:39.559+04:00  INFO 29883 --- [shop-spring] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-06-01T13:44:39.560+04:00  INFO 29883 --- [shop-spring] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-06-01T13:44:39.585+04:00  INFO 29883 --- [shop-spring] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 684 ms
+2026-06-01T13:44:39.686+04:00  INFO 29883 --- [shop-spring] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-06-01T13:44:39.717+04:00  INFO 29883 --- [shop-spring] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-06-01T13:44:39.962+04:00  INFO 29883 --- [shop-spring] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-01T13:44:39.981+04:00  INFO 29883 --- [shop-spring] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-06-01T13:44:40.183+04:00  INFO 29883 --- [shop-spring] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1fba3fd6
+2026-06-01T13:44:40.184+04:00  INFO 29883 --- [shop-spring] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-06-01T13:44:40.234+04:00  INFO 29883 --- [shop-spring] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/shop]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.44
+	Default catalog/schema: shop/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-01T13:44:40.692+04:00  INFO 29883 --- [shop-spring] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-01T13:44:40.739+04:00  INFO 29883 --- [shop-spring] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-01T13:44:40.785+04:00  INFO 29883 --- [shop-spring] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-06-01T13:44:40.954+04:00  WARN 29883 --- [shop-spring] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-01T13:44:41.004+04:00  INFO 29883 --- [shop-spring] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-06-01T13:44:41.004+04:00  WARN 29883 --- [shop-spring] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-06-01T13:44:41.089+04:00  INFO 29883 --- [shop-spring] [main] o.s.b.w.a.WelcomePageHandlerMapping      : Adding welcome page template: index
+2026-06-01T13:44:41.277+04:00  INFO 29883 --- [shop-spring] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8088 (http) with context path '/'
+2026-06-01T13:44:41.280+04:00  INFO 29883 --- [shop-spring] [main] a.i.shopspring.ShopSpringApplication     : Started ShopSpringApplication in 2.659 seconds (process running for 2.878)
+2026-06-01T13:44:47.606+04:00  INFO 29883 --- [shop-spring] [http-nio-8088-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-01T13:44:47.607+04:00  INFO 29883 --- [shop-spring] [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-06-01T13:44:47.608+04:00  INFO 29883 --- [shop-spring] [http-nio-8088-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-06-01T13:44:55.466+04:00  INFO 29883 --- [shop-spring] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-01T13:44:55.472+04:00  INFO 29883 --- [shop-spring] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-06-01T13:44:55.475+04:00  INFO 29883 --- [shop-spring] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-01T13:44:55.476+04:00  INFO 29883 --- [shop-spring] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-06-01T13:44:55.479+04:00  INFO 29883 --- [shop-spring] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-06-01T13:46:20.070+04:00  INFO 30056 --- [shop-spring] [main] a.i.s.ShopSpringApplicationTests         : Starting ShopSpringApplicationTests using Java 17.0.12 with PID 30056 (started by armanhambaryan in /Users/armanhambaryan/IdeaProjects/JavaCore/shop-spring)
+2026-06-01T13:46:20.071+04:00  INFO 30056 --- [shop-spring] [main] a.i.s.ShopSpringApplicationTests         : No active profile set, falling back to 1 default profile: "default"
+2026-06-01T13:46:20.393+04:00  INFO 30056 --- [shop-spring] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-01T13:46:20.429+04:00  INFO 30056 --- [shop-spring] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 30 ms. Found 3 JPA repository interfaces.
+2026-06-01T13:46:20.666+04:00  INFO 30056 --- [shop-spring] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-06-01T13:46:20.696+04:00  INFO 30056 --- [shop-spring] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.1.Final
+2026-06-01T13:46:20.906+04:00  INFO 30056 --- [shop-spring] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-01T13:46:20.924+04:00  INFO 30056 --- [shop-spring] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-06-01T13:46:21.103+04:00  INFO 30056 --- [shop-spring] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36885319
+2026-06-01T13:46:21.104+04:00  INFO 30056 --- [shop-spring] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-06-01T13:46:21.158+04:00  INFO 30056 --- [shop-spring] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/shop]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.44
+	Default catalog/schema: shop/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-01T13:46:21.613+04:00  INFO 30056 --- [shop-spring] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-01T13:46:21.662+04:00  INFO 30056 --- [shop-spring] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-01T13:46:21.718+04:00  INFO 30056 --- [shop-spring] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-06-01T13:46:21.883+04:00  WARN 30056 --- [shop-spring] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-01T13:46:21.962+04:00  INFO 30056 --- [shop-spring] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-06-01T13:46:21.962+04:00  WARN 30056 --- [shop-spring] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-06-01T13:46:22.064+04:00  INFO 30056 --- [shop-spring] [main] o.s.b.w.a.WelcomePageHandlerMapping      : Adding welcome page template: index
+2026-06-01T13:46:22.237+04:00  INFO 30056 --- [shop-spring] [main] a.i.s.ShopSpringApplicationTests         : Started ShopSpringApplicationTests in 2.333 seconds (process running for 2.856)
+2026-06-01T13:46:22.535+04:00  INFO 30056 --- [shop-spring] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-01T13:46:22.536+04:00  INFO 30056 --- [shop-spring] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-06-01T13:46:22.541+04:00  INFO 30056 --- [shop-spring] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

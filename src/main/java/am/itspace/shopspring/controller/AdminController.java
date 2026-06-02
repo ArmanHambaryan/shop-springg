@@ -6,6 +6,7 @@ import am.itspace.shopspring.service.CategoryService;
 import am.itspace.shopspring.service.ProductService;
 import am.itspace.shopspring.service.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class AdminController {
     private final UserService userService;
     private final CategoryService categoryService;
@@ -33,6 +35,7 @@ public class AdminController {
     @PostMapping("/category/add")
     public String addCategory(@ModelAttribute Category category) {
         categoryService.save(category);
+        log.info("Category added: {}", category.getName());
         return "redirect:/adminHome";
     }
 

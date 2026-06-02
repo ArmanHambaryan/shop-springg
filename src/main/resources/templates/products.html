@@ -1,19 +1,61 @@
 <!DOCTYPE html>
-<html lang="en" , xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Products</title>
+    <title>Products - ShopSpring</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css">
 </head>
 <body>
-<h2>Products in this Category</h2>
-<div th:each="prod : ${products}">
-    <img th:src="@{/image/get(picName=${prod.pictureName})}" width="100">
-    <h3 th:text="${prod.title}"></h3>
-    <p> Descrioption :<span th:text="${prod.description}"></span></p>
-    <p>Price: <span th:text="${prod.price}"></span></p>
+<main class="page">
+    <th:block th:replace="~{fragments/HeaderFragment::header}"></th:block>
 
-    <a th:href="@{'/product/' + ${prod.id}}">See</a>
-</div>
+    <div style="margin-bottom: 2rem;">
+        <a class="btn btn-outline btn-sm" href="/">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left"><path d="m15 18-6-6 6-6"/></svg>
+            Back to Categories
+        </a>
+    </div>
 
+    <section class="panel">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem;">
+            <div>
+                <h1 class="section-title" style="margin-bottom: 0.5rem;" th:text="${category != null ? category.name : 'All Products'}">Products</h1>
+                <p style="color: var(--text-muted); font-weight: 500;">Handpicked products just for you</p>
+            </div>
+            <span style="background: var(--primary-soft); color: var(--primary); padding: 0.5rem 1rem; border-radius: var(--radius-full); font-size: 0.875rem; font-weight: 700;" 
+                  th:text="${products.size() + ' Items found'}">0 Items</span>
+        </div>
+
+        <div class="grid">
+            <article class="card" th:each="prod : ${products}">
+                <div class="card-img-wrapper">
+                    <img class="card-img" th:src="@{/image/get(picName=${prod.pictureName})}" alt="Product image">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title" th:text="${prod.title}">Product Title</h3>
+                    <p class="card-desc" th:text="${prod.description}">Description goes here.</p>
+                    <div class="card-footer">
+                        <span class="price-tag">$<span th:text="${prod.price}">0.00</span></span>
+                        <a class="btn btn-primary btn-sm" th:href="@{'/product/' + ${prod.id}}">
+                            Details
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <div th:if="${products.empty}" class="stack" style="text-align: center; padding: 6rem 1rem; align-items: center;">
+            <div style="width: 120px; height: 120px; background: var(--bg-main); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--text-light)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-x"><path d="m13.5 8.5-5 5"/><path d="m8.5 8.5 5 5"/><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            </div>
+            <h2 style="font-size: 1.5rem; font-weight: 800;">No products found</h2>
+            <p style="color: var(--text-muted); max-width: 400px; margin: 0 auto;">We couldn't find any products in this category at the moment. Please check back later or explore other categories.</p>
+            <a href="/" class="btn btn-primary" style="margin-top: 2rem;">Browse All Categories</a>
+        </div>
+    </section>
+</main>
 </body>
 </html>

@@ -1,116 +1,169 @@
 <!DOCTYPE html>
-<html lang="en" , xmlns:th="http://www.thymeleaf.org" 4r>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Page</title>
+    <title>Admin Dashboard - ShopSpring</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css">
 </head>
 <body>
+<main class="page stack" style="gap: 3rem;">
+    <th:block th:replace="~{fragments/HeaderFragment::header}"></th:block>
 
-<h1>Admin Dashboard</h1>
-<a href="/">Home page</a>
-<hr>
+    <section class="hero" style="padding: 2rem 0; text-align: left;">
+        <h1 class="gradient-text" style="font-size: 3rem;">Admin Dashboard</h1>
+        <p style="margin: 0;">Management portal for products, categories, and users.</p>
+    </section>
 
-<section>
-    <h2>Users</h2>
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Surname</th>
-            <th>Email</th>
-            <th>Role</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="user : ${users}">
-            <td th:text="${user.id}"></td>
-            <td th:text="${user.name}"></td>
-            <td th:text="${user.surname}"></td>
-            <td th:text="${user.email}"></td>
-            <td th:text="${user.role}"></td>
-        </tr>
-        </tbody>
-    </table>
-</section>
+    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: start;">
+        <div class="stack" style="gap: 3rem;">
+            <section class="panel">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <h2 class="section-title" style="margin-bottom: 0;">Registered Users</h2>
+                    <span class="btn btn-secondary btn-sm" th:text="${users.size() + ' Total'}">0 Total</span>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>User</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="u : ${users}">
+                            <td>
+                                <div style="display: flex; flex-direction: column;">
+                                    <strong th:text="${u.name + ' ' + u.surname}">Name</strong>
+                                    <span style="font-size: 0.75rem; color: var(--text-light);" th:text="'ID: ' + ${u.id}">ID</span>
+                                </div>
+                            </td>
+                            <td th:text="${u.email}"></td>
+                            <td>
+                                <span th:class="${u.role.toString() == 'ADMIN' ? 'btn btn-primary btn-sm' : 'btn btn-secondary btn-sm'}" 
+                                      style="cursor: default; font-size: 0.7rem; padding: 0.25rem 0.75rem;" 
+                                      th:text="${u.role}">Role</span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
 
-<section>
-    <h2>Categories</h2>
+            <section class="panel">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <h2 class="section-title" style="margin-bottom: 0;">Inventory Management</h2>
+                    <span class="btn btn-secondary btn-sm" th:text="${products.size() + ' Products'}">0 Products</span>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Product Details</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="prod : ${products}">
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 1rem;">
+                                    <img th:if="${prod.pictureName != null}"
+                                         th:src="@{/image/get(picName=${prod.pictureName})}" 
+                                         style="width: 50px; height: 50px; border-radius: var(--radius-sm); object-fit: cover; border: 1px solid var(--border);"
+                                         alt="Product">
+                                    <div style="display: flex; flex-direction: column;">
+                                        <strong th:text="${prod.title}">Title</strong>
+                                        <span style="font-size: 0.75rem; color: var(--text-light); max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" 
+                                              th:text="${prod.description}">Description</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="btn btn-outline btn-sm" style="font-size: 0.7rem; padding: 0.25rem 0.5rem;" 
+                                      th:text="${prod.category != null ? prod.category.name : '-'}">Category</span>
+                            </td>
+                            <td style="font-weight: 700; color: var(--text-main);" th:text="${'$' + prod.price}"></td>
+                            <td>
+                                <a class="btn btn-danger btn-sm" style="padding: 0.4rem;" th:href="@{'/product/delete/' + ${prod.id}}"
+                                   onclick="return confirm('Delete this product?')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
 
-    <form th:action="@{/category/add}" method="post">
-        <h3>Add Category</h3>
-        <input type="text" name="name" placeholder="Name" required>
-        <button type="submit">Add</button>
-    </form>
+        <aside class="stack" style="gap: 3rem;">
+            <section class="panel glass">
+                <h2 class="section-title" style="font-size: 1.5rem;">New Product</h2>
+                <form th:action="@{/product/add}" method="post" enctype="multipart/form-data" class="stack" style="gap: 1.25rem;">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" name="title" placeholder="Product name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea name="description" placeholder="Short description..." style="height: 100px;" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Price ($)</label>
+                        <input type="number" step="0.01" name="price" placeholder="0.00" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select name="category.id">
+                            <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.name}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Image</label>
+                        <input type="file" name="pic" required>
+                    </div>
+                    <button class="btn btn-primary" type="submit" style="width: 100%;">Create Product</button>
+                </form>
+            </section>
 
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="cat : ${categories}">
-            <td th:text="${cat.id}"></td>
-            <td th:text="${cat.name}"></td>
-            <td>
-                <a class="delete-btn" th:href="@{'/category/delete/' + ${cat.id}}"
-                   onclick="return confirm('Delete?:')">Delete</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</section>
-
-<section>
-    <h2>Products</h2>
-
-    <form th:action="@{/product/add}" method="post" enctype="multipart/form-data">
-        <h3>Add Product</h3>
-        <input type="text" name="title" placeholder="Title" required>
-        <textarea name="description" placeholder="description" required style="width: 100%; height: 60px;"></textarea>
-        <input type="number" name="price" placeholder="Price" required>
-
-        <label>Category:</label>
-        <select name="category.id">
-            <option th:each="cat : ${categories}"
-                    th:value="${cat.id}"
-                    th:text="${cat.name}"></option>
-        </select>
-
-        <label>Picture:</label>
-        <input type="file" name="pic" required>
-
-        <button type="submit">Add Product</button>
-    </form>
-
-    <table>
-        <thead>
-        <tr>
-            <th>Pic</th>
-            <th>Title</th>
-            <th>Price</th>
-            <th>Category</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="prod : ${products}">
-            <td>
-                <img th:if="${prod.pictureName != null}"
-                     th:src="@{/image/get(picName=${prod.pictureName})}" width="60">
-            </td>
-            <td th:text="${prod.title}"></td>
-            <td th:text="${prod.price}"></td>
-            <td th:text="${prod.category != null ? prod.category.name : '—'}"></td>
-            <td>
-                <a class="delete-btn" th:href="@{'/product/delete/' + ${prod.id}}"
-                   onclick="return confirm('Are you sure?:')">Delete</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</section>
+            <section class="panel">
+                <h2 class="section-title" style="font-size: 1.5rem;">Categories</h2>
+                <form th:action="@{/category/add}" method="post" class="stack" style="margin-bottom: 2rem;">
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <input type="text" name="name" placeholder="Category Name" required>
+                    </div>
+                    <button class="btn btn-secondary btn-sm" type="submit" style="width: 100%;">Add Category</button>
+                </form>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="cat : ${categories}">
+                            <td th:text="${cat.name}" style="font-weight: 600;"></td>
+                            <td>
+                                <a class="btn btn-danger btn-sm" style="padding: 0.3rem;" th:href="@{'/category/delete/' + ${cat.id}}"
+                                   onclick="return confirm('Delete category?')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </aside>
+    </div>
+</main>
 
 </body>
 </html>

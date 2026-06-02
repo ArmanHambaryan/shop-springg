@@ -14,6 +14,10 @@ public class SpringUser extends org.springframework.security.core.userdetails.Us
     public SpringUser(User user) {
         super(user.getEmail(),
                 user.getPassword(),
+                user.isEnabled(),
+                true,
+                true,
+                true,
                 AuthorityUtils.createAuthorityList(user.getRole().name()));
         this.user = user;
     }

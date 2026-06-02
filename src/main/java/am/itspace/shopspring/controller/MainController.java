@@ -63,15 +63,6 @@ public class MainController {
         return "registerPage";
     }
 
-    @PostMapping("/register")
-    public String register(@ModelAttribute User user) {
-        if (userService.findByEmail(user.getEmail()).isPresent()) {
-            return "redirect:/registerPage";
-        }
-        userService.save(user);
-        return "redirect:/loginPage";
-    }
-
     @GetMapping("/image/get")
     public @ResponseBody byte[] getImage(@RequestParam("picName") String picName) {
         File file = new File(imageDirectoryPath + picName);

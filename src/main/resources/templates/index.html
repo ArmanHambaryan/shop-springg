@@ -1,16 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home Page</title>
+    <title>ShopSpring - Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css">
 </head>
 <body>
+<main class="page">
+    <th:block th:replace="~{fragments/HeaderFragment::header}"></th:block>
 
-<th:block th:insert="fragments/HeaderFragment::header"></th:block>
+    <header class="hero">
+        <h1 class="gradient-text">Premium Quality Shopping</h1>
+        <p>Discover our curated collection of high-quality products across various categories. Style, comfort, and durability in every item.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center;">
+            <a href="#browse" class="btn btn-primary">Start Browsing</a>
+            <a href="/registerPage" th:unless="${user != null}" class="btn btn-outline">Join Community</a>
+        </div>
+    </header>
 
-<div th:each="cat : ${categories}">
-    <a th:href="@{'/products/category/' + ${cat.id}}" th:text="${cat.name}">Category Name</a>
-</div>
-
+    <section id="browse" class="panel">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem;">
+            <h2 class="section-title" style="margin-bottom: 0;">Browse Categories</h2>
+            <span style="color: var(--text-muted); font-weight: 600;" th:text="${categories.size() + ' Categories Available'}">0 Categories</span>
+        </div>
+        
+        <div class="grid">
+            <a class="card category-card" th:each="cat : ${categories}" th:href="@{'/products/category/' + ${cat.id}}">
+                <div class="category-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l4.58-4.58c.94-.94.94-2.48 0-3.42L12 2Z"/><path d="M7 7h.01"/></svg>
+                </div>
+                <h3 class="card-title" th:text="${cat.name}">Category Name</h3>
+                <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1.5rem;">Explore curated items in this collection</p>
+                <span class="btn btn-secondary btn-sm">Explore Collection</span>
+            </a>
+        </div>
+    </section>
+</main>
 </body>
 </html>

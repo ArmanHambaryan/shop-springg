@@ -14,4 +14,6 @@ public interface UserService {
     Optional<User> findByEmail(String email);
 
     List<User> findAll();
+
+    void verifyUser(String email, String token);
 }

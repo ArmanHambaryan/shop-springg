@@ -6,23 +6,34 @@
 </head>
 <body>
 
-<div th:fragment="header">
+<header th:fragment="header" class="header-nav glass">
+    <a href="/" class="brand">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span>Shop<span class="gradient-text">Spring</span></span>
+    </a>
 
-    <a href="?lang=en">EN</a> |
-    <a href="?lang=hy">HY</a> |
-    <a href="?lang=ru">RU</a> |
+    <nav class="nav-links">
+        <div class="lang-switcher">
+            <a href="?lang=en" th:classappend="${#locale.language == 'en' ? 'active' : ''}">EN</a>
+            <a href="?lang=hy" th:classappend="${#locale.language == 'hy' ? 'active' : ''}">HY</a>
+            <a href="?lang=ru" th:classappend="${#locale.language == 'ru' ? 'active' : ''}">RU</a>
+        </div>
 
-    <div th:if="${user != null}">
-        <span th:text="#{main.welcome}"></span>, <span th:text="${user.name}"></span> | <span
-            th:text="${user.surname}"></span> | <a href="/logout">Logout</a>
-    </div>
-    <div th:unless="${user != null}">
-        <a href="/loginPage" th:text="#{main.login}"></a> | <a href="/registerPage" th:text="#{main.register}"></a>
-    </div>
-
-    <h2><span th:text="#{main.categoryList}"></span></h2>
-
-</div>
+        <div th:if="${user != null}" class="user-links">
+            <div class="user-info">
+                <span class="user-welcome" th:text="#{main.welcome}">Welcome</span>
+                <strong class="user-name" th:text="${user.name + ' ' + user.surname}">User Name</strong>
+            </div>
+            <a th:if="${user.role != null and user.role.toString() == 'ADMIN'}" class="btn btn-secondary btn-sm" href="/adminHome">Admin</a>
+            <a class="btn btn-outline btn-sm" href="/logout">Logout</a>
+        </div>
+        
+        <div th:unless="${user != null}" class="user-links">
+            <a class="btn btn-outline btn-sm" href="/loginPage" th:text="#{main.login}">Login</a>
+            <a class="btn btn-primary btn-sm" href="/registerPage" th:text="#{main.register}">Register</a>
+        </div>
+    </nav>
+</header>
 
 </body>
 </html>
